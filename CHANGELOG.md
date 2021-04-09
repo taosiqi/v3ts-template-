@@ -1,4 +1,10 @@
-## 0.0.1 (2021-03-08)
+## 0.0.1 (2021-04-09)
+
+### chore
+范围|描述|commitId
+--|--|--
+ - | 增加配置文件注释 | [ba67432](https://github.com/taosiqi/v3ts-template/commit/ba67432)
+
 
 范围|描述|commitId
 --|--|--
@@ -43,14 +49,14 @@
 ### 🌟 新功能
 范围|描述|commitId
 --|--|--
- - | ci脚本修改 | [5d9996d](https://github.com/taosiqi/v3ts-template/commit/5d9996d)
- - | 修改ci脚本 | [e73e5f4](https://github.com/taosiqi/v3ts-template/commit/e73e5f4)
- - | 修改ci脚本 | [123ec1c](https://github.com/taosiqi/v3ts-template/commit/123ec1c)
  - | 全局copy、拖动弹窗、权限、波浪指令 | [a3b2889](https://github.com/taosiqi/v3ts-template/commit/a3b2889)
- - | 增加滚动到顶部功能 | [2d61984](https://github.com/taosiqi/v3ts-template/commit/2d61984)
- - | 自定义全局指令开发 | [8f8c57d](https://github.com/taosiqi/v3ts-template/commit/8f8c57d)
  - | 首次上传 | [8b607f7](https://github.com/taosiqi/v3ts-template/commit/8b607f7)
  - | 首次提交 | [fbef38a](https://github.com/taosiqi/v3ts-template/commit/fbef38a)
+ - | 修改ci脚本 | [e73e5f4](https://github.com/taosiqi/v3ts-template/commit/e73e5f4)
+ - | 修改ci脚本 | [123ec1c](https://github.com/taosiqi/v3ts-template/commit/123ec1c)
+ - | 增加滚动到顶部功能 | [2d61984](https://github.com/taosiqi/v3ts-template/commit/2d61984)
+ - | 自定义全局指令开发 | [8f8c57d](https://github.com/taosiqi/v3ts-template/commit/8f8c57d)
+ - | ci脚本修改 | [5d9996d](https://github.com/taosiqi/v3ts-template/commit/5d9996d)
 
 
 ### 📦 持续集成
