@@ -20,32 +20,11 @@
   <router-view />
 </template>
 <script>
-  import { defineComponent, ref } from 'vue'
-  import { scrollTo } from '@/utils/scroll-to'
-
+  import { defineComponent } from 'vue'
   export default defineComponent({
     name: 'apps',
     components: {},
-    setup() {
-      let dialogVisible = ref(true)
-      function setLog() {
-        scrollTo(0, 800)
-      }
-      return {
-        setLog,
-        dialogVisible
-      }
-    }
+    setup() {}
   })
 </script>
-<style lang="scss">
-  .container-main {
-    height: 3000px;
-    color: $red-color;
-    @include placeholderColor();
-  }
-  .totop {
-    position: sticky;
-    top: 100px;
-  }
-</style>
+<style lang="scss"></style>
