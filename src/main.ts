@@ -2,6 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
+import './styles/base.css'
+
 // 第三方库 element iconPark均为按需引入
 import element from './plugin/element'
 import iconPark from './plugin/icon-park'
