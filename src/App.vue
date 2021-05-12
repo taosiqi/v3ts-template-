@@ -1,22 +1,4 @@
 <template>
-  <div class="w-10 flex w-screen justify-between">
-    <div>1</div>
-    <div>2</div>
-  </div>
-  <!--  <div class="container-main">-->
-  <!--    <el-radio value="1" label="1">备选项</el-radio>-->
-  <!--    <el-radio value="2" label="2">备选项</el-radio>-->
-  <!--    <icon-alarm-->
-  <!--      @click="setLog"-->
-  <!--      class="totop"-->
-  <!--      v-waves-->
-  <!--      theme="multi-color"-->
-  <!--      size="35"-->
-  <!--      :fill="['#333', '#2F88FF', '#FFF', '#43CCF8']"-->
-  <!--      :strokeWidth="3"-->
-  <!--    />-->
-  <!--    -->
-  <!--  </div>-->
   <router-view />
 </template>
 <script>

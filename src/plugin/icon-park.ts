@@ -1,6 +1,6 @@
-import { Alarm } from '@icon-park/vue-next'
+import { Alarm, User, Lock } from '@icon-park/vue-next'
 
-const components = [Alarm]
+const components = [Alarm, User, Lock]
 //字节第三方图标库
 export default (app: any) => {
   components.forEach((component) => {

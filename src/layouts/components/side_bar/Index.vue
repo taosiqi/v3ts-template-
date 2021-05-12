@@ -1,0 +1,58 @@
+<template>
+  <div>侧边栏</div>
+</template>
+
+<script lang="ts">
+  import { computed, defineComponent } from 'vue'
+  export default defineComponent({
+    components: {},
+    setup() {
+      return {}
+    }
+  })
+</script>
+
+<style lang="scss">
+  .sidebar-container {
+    // reset element-ui css
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+    }
+
+    .el-scrollbar__view {
+      height: 100%;
+    }
+
+    .el-scrollbar__bar {
+      &.is-vertical {
+        right: 0px;
+      }
+
+      &.is-horizontal {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<style lang="scss" scoped>
+  .el-scrollbar {
+    height: 100%;
+  }
+
+  .has-logo {
+    .el-scrollbar {
+      height: calc(100vh - 100px);
+    }
+  }
+
+  .el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+  }
+</style>
