@@ -3,7 +3,7 @@
  * @param date 时间字符串
  * @return 格式化的后时间
  */
-function formatTime(date: Date): string {
+function formatTime(date: Date = new Date()): string {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()

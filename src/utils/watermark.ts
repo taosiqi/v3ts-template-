@@ -4,9 +4,14 @@ interface config {
   rotate: number
   font: string
   fillStyle: string
-  textBaseline: string
+  textBaseline: CanvasTextBaseline
 }
 
+/**
+ * 水印
+ *生成 new Watermark().setWatermark('嘻哈后台管理系统-' + formatTime())
+ *删除 new Watermark().removeWatermark()
+ */
 export default class Watermark {
   public id
   constructor(id = 'ws-watermark-background') {
@@ -22,14 +27,14 @@ export default class Watermark {
       fillStyle: 'rgba(200, 200, 200, 0.30)',
       textBaseline: 'middle'
     }
-  ): string {
+  ): void {
     if (document.getElementById(this.id) !== null) {
       document.body.removeChild(<Node>document.getElementById(this.id))
     }
     const cvs = document.createElement('canvas')
     cvs.width = config.width
     cvs.height = config.height
-    const can2d: any = cvs.getContext('2d')
+    const can2d: CanvasRenderingContext2D = <CanvasRenderingContext2D>cvs.getContext('2d')
     can2d.rotate((-15 * Math.PI) / config.rotate)
     can2d.font = config.font
     can2d.fillStyle = config.fillStyle
@@ -47,7 +52,6 @@ export default class Watermark {
     div.style.height = document.documentElement.clientHeight + 'px'
     div.style.background = 'url(' + cvs.toDataURL('image/png') + ') left top repeat'
     document.body.appendChild(div)
-    return this.id
   }
   removeWatermark(): void {
     if (document.getElementById(this.id) !== null) {

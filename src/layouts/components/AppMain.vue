@@ -1,11 +1,13 @@
 <template>
-  <el-main class="app-main">
-    <transition name="el-fade-in-linear">
-      <keep-alive>
-        <router-view :key="key" />
-      </keep-alive>
-    </transition>
-  </el-main>
+  <div class="app-main">
+    <router-view v-slot="{ Component }">
+      <transition name="el-fade-in-linear">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,7 +21,6 @@
 
 <style lang="scss" scoped>
   .app-main {
-    background-color: #e9eef3;
     color: #333;
     text-align: center;
     line-height: 160px;
