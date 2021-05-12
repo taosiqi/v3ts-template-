@@ -3,7 +3,7 @@ import locale from 'element-plus/lib/locale'
 import lang from 'element-plus/lib/locale/lang/zh-cn'
 import {
   // ElAlert,
-  // ElAside,
+  ElAside,
   // ElAutocomplete,
   // ElAvatar,
   // ElBacktop,
@@ -26,7 +26,7 @@ import {
   // ElCollapseItem,
   // ElCollapseTransition,
   // ElColorPicker,
-  // ElContainer,
+  ElContainer,
   // ElDatePicker,
   ElDialog,
   // ElDivider,
@@ -37,7 +37,7 @@ import {
   // ElFooter,
   ElForm,
   ElFormItem,
-  // ElHeader,
+  ElHeader,
   ElIcon,
   // ElImage,
   ElInput,
@@ -89,7 +89,7 @@ import {
 
 const components = [
   // ElAlert,
-  // ElAside,
+  ElAside,
   // ElAutocomplete,
   // ElAvatar,
   // ElBacktop,
@@ -112,7 +112,7 @@ const components = [
   // ElCollapseItem,
   // ElCollapseTransition,
   // ElColorPicker,
-  // ElContainer,
+  ElContainer,
   // ElDatePicker,
   ElDialog,
   // ElDivider,
@@ -123,7 +123,7 @@ const components = [
   // ElFooter,
   ElForm,
   ElFormItem,
-  // ElHeader,
+  ElHeader,
   ElIcon,
   // ElImage,
   ElInput,

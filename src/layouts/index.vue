@@ -1,12 +1,12 @@
 <template>
-  <div class="app-wrapper">
+  <div class="container">
     <Sidebar />
-    <Navbar />
-    <Settings />
-    <AppMain />
+    <div class="main">
+      <Navbar />
+      <AppMain />
+    </div>
   </div>
 </template>
-
 <script lang="ts">
   import { defineComponent } from 'vue'
 
@@ -16,7 +16,6 @@
     components: {
       AppMain,
       Navbar,
-      Settings,
       Sidebar
     },
     setup() {
@@ -25,4 +24,17 @@
   })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 100px;
+      min-height: 100%;
+      height: calc(100vh - 80px);
+    }
+  }
+</style>
