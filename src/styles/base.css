@@ -239,14 +239,14 @@ body {
 
 ::-webkit-scrollbar-track {
   width: 6px;
-  background: rgba(16,31,28, 0.1);
+  background:#c7c8ca;
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
   border-radius: 2em;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(16,31,28, 0.5);
+  background-color: #c7c8ca;
   background-clip: padding-box;
   min-height: 28px;
   -webkit-border-radius: 2em;
@@ -255,5 +255,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(16,31,28, 1);
+  background-color: #c7c8ca;
 }
