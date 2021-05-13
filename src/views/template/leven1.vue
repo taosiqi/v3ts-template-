@@ -1,5 +1,6 @@
 <template>
   <div>home</div>
+  <button @click="$router.push({ name: 'Leven2' })">ho,e</button>
 </template>
 
 <script setup lang="ts">
