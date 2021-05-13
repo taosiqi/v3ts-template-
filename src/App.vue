@@ -11,9 +11,7 @@
     mounted() {},
     setup() {
       new Watermark().setWatermark('嘻哈后台管理系统-' + formatTime())
-      return {
-
-      }
+      return {}
     }
   })
 </script>

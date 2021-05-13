@@ -1,10 +1,10 @@
 interface config {
-  width: number
-  height: number
-  rotate: number
-  font: string
-  fillStyle: string
-  textBaseline: CanvasTextBaseline
+  width?: number
+  height?: number
+  rotate?: number
+  font?: string
+  fillStyle?: string
+  textBaseline?: CanvasTextBaseline
 }
 
 /**
@@ -14,32 +14,22 @@ interface config {
  */
 export default class Watermark {
   public id
-  constructor(id = 'ws-watermark-background') {
+  constructor(id = 'watermark-background') {
     this.id = id
   }
-  setWatermark(
-    str: string,
-    config: config = {
-      width: 300,
-      height: 120,
-      rotate: 280,
-      font: '12px Vedana',
-      fillStyle: 'rgba(200, 200, 200, 0.30)',
-      textBaseline: 'middle'
-    }
-  ): void {
+  setWatermark(str: string, config: config = {}): void {
     if (document.getElementById(this.id) !== null) {
       document.body.removeChild(<Node>document.getElementById(this.id))
     }
     const cvs = document.createElement('canvas')
-    cvs.width = config.width
-    cvs.height = config.height
-    const can2d: CanvasRenderingContext2D = <CanvasRenderingContext2D>cvs.getContext('2d')
-    can2d.rotate((-15 * Math.PI) / config.rotate)
-    can2d.font = config.font
-    can2d.fillStyle = config.fillStyle
+    cvs.width = config.width || 300
+    cvs.height = config.height || 120
+    const can2d = <CanvasRenderingContext2D>cvs.getContext('2d')
+    can2d.rotate((-15 * Math.PI) / (config.rotate || 280))
+    can2d.font = config.font || '12px Vedana'
+    can2d.fillStyle = config.fillStyle || 'rgba(200, 200, 200, 0.30)'
     can2d.textAlign = 'left'
-    can2d.textBaseline = config.textBaseline
+    can2d.textBaseline = config.textBaseline || 'middle'
     can2d.fillText(str, cvs.width / 8, cvs.height / 2)
     const div = document.createElement('div')
     div.id = this.id
