@@ -1,5 +1,8 @@
 <template>
   <div class="aside">
+    <div :class="['logo', isCollapse ? 'collapse-logo' : '']">
+      <img src="@/assets/images/logo.png" />
+    </div>
     <el-menu
       class="el-menu-vertical"
       :collapse="isCollapse"
@@ -15,7 +18,7 @@
           <i class="el-icon-location"></i>
           <span>模板</span>
         </template>
-        <el-menu-item index="/home/leven1">选项1</el-menu-item>
+        <el-menu-item index="/home/leven1">模板1</el-menu-item>
       </el-submenu>
       <el-menu-item index="/dashboard">
         <i class="el-icon-setting"></i>
@@ -39,11 +42,10 @@
       const route = useRoute()
       let isCollapse = ref(false)
       const activePath = computed(() => {
-        const { meta, path } = route
+        const { meta } = route
         if (meta.activeMenu) {
           return meta.activeMenu
         }
-        debugger
         return route.path
       })
 
@@ -62,12 +64,28 @@
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #303133;
+    .logo {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: auto;
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .collapse-logo img {
+      transform: scale(0.7);
+      transition: all 0.5s;
+    }
     .el-menu {
       border-right: 0;
     }
     .el-menu-vertical:not(.el-menu--collapse) {
       width: 250px;
-      height: 100%;
+      height: calc(100% - 100px);
     }
     .check-menu-icon {
       cursor: pointer;

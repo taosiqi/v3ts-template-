@@ -14,7 +14,8 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: defaultSettings.port,
-    open: false,
+    open: false, //打开浏览器
+    // https://cli.vuejs.org/zh/config/#lintonsave
     overlay: {
       warnings: false,
       errors: true
