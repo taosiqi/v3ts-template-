@@ -7,6 +7,7 @@
         </keep-alive>
       </transition>
     </router-view>
+    <el-backtop target=".app-main"></el-backtop>
   </div>
 </template>
 
@@ -21,9 +22,10 @@
 
 <style lang="scss" scoped>
   .app-main {
+    height: calc(100% - 80px);
+    overflow-y: auto;
     color: #333;
     text-align: center;
     line-height: 160px;
-    flex: 1;
   }
 </style>

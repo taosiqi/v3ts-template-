@@ -13,6 +13,10 @@
       unique-opened
       :default-active="activePath"
     >
+      <el-menu-item index="/dashboard">
+        <i class="el-icon-setting"></i>
+        <template #title>通告栏</template>
+      </el-menu-item>
       <el-submenu index="1">
         <template #title>
           <i class="el-icon-location"></i>
@@ -20,10 +24,6 @@
         </template>
         <el-menu-item index="/home/leven1">模板1</el-menu-item>
       </el-submenu>
-      <el-menu-item index="/dashboard">
-        <i class="el-icon-setting"></i>
-        <template #title>导航四</template>
-      </el-menu-item>
     </el-menu>
     <i
       :class="['check-menu-icon', isCollapse ? 'el-icon-s-fold' : 'el-icon-s-unfold']"

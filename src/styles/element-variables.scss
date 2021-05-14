@@ -43,3 +43,8 @@
 //@import "~element-plus/packages/theme-chalk/src/infinite-scroll";
 //@import "~element-plus/packages/theme-chalk/src/loading";
 //@import "~element-plus/packages/theme-chalk/src/message";
+
+//element样式覆盖
+.el-dropdown__popper{
+  top: 65px !important;
+}

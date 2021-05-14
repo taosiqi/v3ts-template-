@@ -46,5 +46,9 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach((to, from) => {
+  console.log(`to:${to.path} -> from:${from.meta}`)
+  return true
+})
 
 export default router
