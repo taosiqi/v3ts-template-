@@ -16,8 +16,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
       },
       {
-        path: 'home',
-        name: 'Home',
+        path: 'template',
+        name: 'Template',
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/template/index.vue'),
         children: [
           {
@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
             name: 'Leven2',
             meta: {
               //list/son是list页面下触发的下级页面，需要填activeMenu，也就是list的页面的实际path，用来激活菜单的选中状态
-              activeMenu: '/home/leven1'
+              activeMenu: '/template/leven1'
             },
             component: () =>
               import(/* webpackChunkName: "dashboard" */ '@/views/template/leven2.vue')

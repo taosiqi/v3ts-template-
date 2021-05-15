@@ -1,8 +1,9 @@
 <template>
   <div class="navbar">
     <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb" trigger="click">
-      <el-breadcrumb-item :to="{ path: '/dashboard' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '' }">模板</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: item.index }" v-for="item in bread" :key="item.title">{{
+        item.title
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-dropdown class="dropdown" @command="handleCommand">
       <span class="el-dropdown-link">
@@ -27,17 +28,19 @@
 <script>
   import { ElMessage } from 'element-plus'
   import { computed, reactive, toRefs } from 'vue'
+  import { useStore } from 'vuex'
   export default {
     setup() {
+      const store = useStore()
+      const bread = computed(() => store.state.app.bread)
       const state = reactive({
-        toggleSideBar: () => {},
-        logout: () => {},
         handleCommand: (command) => {
           ElMessage.info(command)
         }
       })
       return {
-        ...toRefs(state)
+        ...toRefs(state),
+        bread
       }
     }
   }

@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2549724 */
+  src: url('iconfont.woff2?t=1621046697753') format('woff2'),
+       url('iconfont.woff?t=1621046697753') format('woff'),
+       url('iconfont.ttf?t=1621046697753') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-moban:before {
+  content: "\e669";
+}
+
+.icon-yibiao:before {
+  content: "\e600";
+}
+

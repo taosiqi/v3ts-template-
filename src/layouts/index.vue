@@ -10,7 +10,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
 
-  import { AppMain, Navbar, Settings, Sidebar } from './components/index'
+  import { AppMain, Navbar, Sidebar } from './components/index'
   export default defineComponent({
     name: 'Layout',
     components: {
