@@ -11,6 +11,10 @@ const state: state = {
     {
       index: '/dashboard',
       title: '首页'
+    },
+    {
+      index: '/dashboard',
+      title: '仪表盘'
     }
   ]
 }

@@ -4,7 +4,11 @@
       <img src="@/assets/images/logo.png" />
     </div>
     <el-menu
-      @select="selectMenu"
+      @select="
+        (e) => {
+          selectMenu(e, menu)
+        }
+      "
       class="el-menu-vertical"
       :collapse="isCollapse"
       background-color="#303133"
@@ -48,6 +52,7 @@
 </template>
 
 <script lang="ts">
+  /* eslint-disable no-undef */
   import { computed, defineComponent, ref, reactive } from 'vue'
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'
@@ -57,7 +62,7 @@
       const store = useStore()
       const route = useRoute()
       let isCollapse = ref(false)
-      let menu = reactive<any>([
+      let menu = reactive<menuData[]>([
         {
           icon: 'iconfont icon-yibiao',
           index: '/dashboard',
@@ -82,13 +87,18 @@
         }
         return route.path
       })
-      function selectMenu(e: string, { menus = menu }) {
-        for (const value of menus) {
+      function selectMenu(e: string, menu: menuData[], father?: menuData) {
+        for (const value of menu) {
           if (value.sub) {
-            selectMenu(e, { menus: value.sub })
+            selectMenu(e, value.sub, value)
           }
           if (value.index === e) {
-            store.commit('app/increment', [value])
+            let payload = []
+            if (father) {
+              payload.push({ index: father.index, title: father.title })
+            }
+            payload.push(value)
+            store.commit('app/increment', payload)
             break
           }
         }
