@@ -4,11 +4,7 @@
       <img src="@/assets/images/logo.png" />
     </div>
     <el-menu
-      @select="
-        (e) => {
-          selectMenu(e, menu)
-        }
-      "
+      @select="(e) => selectMenu(e, menu)"
       class="el-menu-vertical"
       :collapse="isCollapse"
       background-color="#303133"
