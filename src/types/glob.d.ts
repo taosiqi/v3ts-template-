@@ -11,8 +11,15 @@ declare interface ProjectState {
   userServer: string
 }
 declare interface menuData {
+  id:number | string
+  pid:number | string
   icon?: string
   index: string | ''
   title:string
   sub?:menuData[]
+}
+
+declare interface breadData {
+  index: string
+  title:string
 }

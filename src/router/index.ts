@@ -30,11 +30,19 @@ const routes: Array<RouteRecordRaw> = [
             path: 'leven1/leven2',
             name: 'Leven2',
             meta: {
-              //list/son是list页面下触发的下级页面，需要填activeMenu，也就是list的页面的实际path，用来激活菜单的选中状态
               activeMenu: '/template/leven1'
             },
             component: () =>
               import(/* webpackChunkName: "dashboard" */ '@/views/template/leven2.vue')
+          },
+          {
+            path: 'leven1/leven3',
+            name: 'Leven3',
+            meta: {
+              activeMenu: '/template/leven1'
+            },
+            component: () =>
+              import(/* webpackChunkName: "dashboard" */ '@/views/template/leven3.vue')
           }
         ]
       }
@@ -47,7 +55,7 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to, from) => {
-  console.log(`to:${to.path} -> from:${from.meta}`)
+  console.log(to)
   return true
 })
 

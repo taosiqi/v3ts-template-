@@ -4,7 +4,6 @@
       <img src="@/assets/images/logo.png" />
     </div>
     <el-menu
-      @select="(e) => selectMenu(e, menu)"
       class="el-menu-vertical"
       :collapse="isCollapse"
       background-color="#303133"
@@ -14,30 +13,37 @@
       unique-opened
       :default-active="activePath"
     >
-      <template v-for="item in menu" :key="item.index">
-        <template v-if="!item.sub">
-          <el-menu-item :index="item.index">
+      <template v-for="(item, index) in menu" :key="index">
+        <el-submenu v-if="item.sub" :index="item.title">
+          <template #title>
             <i :class="item.icon"></i>
-            <template #title>
-              <span class="menu-title">{{ item.title }}</span>
-            </template>
-          </el-menu-item>
-        </template>
-        <template v-else>
-          <el-submenu index="1">
-            <template #title>
-              <i :class="item.icon"></i>
-              <span class="menu-title">{{ item.title }}</span>
-            </template>
-            <el-menu-item
-              :index="item.index"
-              class="menu-item"
-              v-for="item in item.sub"
-              :key="item.index"
-              >{{ item.title }}</el-menu-item
-            >
-          </el-submenu>
-        </template>
+            <span class="menu-title">{{ item.title }}</span>
+          </template>
+          <template v-for="(item, index) in item.sub" :key="index">
+            <el-submenu v-if="item.sub" :index="item.title">
+              <template #title>
+                <i :class="item.icon"></i>
+                <span class="menu-title">{{ item.title }}</span>
+              </template>
+              <el-menu-item
+                v-for="item in item.sub"
+                :key="item.index"
+                :index="item.index"
+                class="menu-item-sub"
+                >{{ item.title }}</el-menu-item
+              >
+            </el-submenu>
+            <el-menu-item :index="item.index" v-else class="menu-item">{{
+              item.title
+            }}</el-menu-item>
+          </template>
+        </el-submenu>
+        <el-menu-item v-else :index="item.index">
+          <i :class="item.icon"></i>
+          <template #title>
+            <span class="menu-title">{{ item.title }}</span>
+          </template>
+        </el-menu-item>
       </template>
     </el-menu>
     <i
@@ -58,49 +64,53 @@
       const store = useStore()
       const route = useRoute()
       let isCollapse = ref(false)
-      let menu = reactive<menuData[]>([
-        {
-          icon: 'iconfont icon-yibiao',
-          index: '/dashboard',
-          title: '仪表盘'
-        },
-        {
-          icon: 'iconfont icon-moban',
-          index: '',
-          title: '模板',
-          sub: [
-            {
-              index: '/template/leven1',
-              title: '子页面'
-            }
-          ]
-        }
-      ])
+      let treeId = ref<any>([])
+      let menu = computed(() => store.state.app.menu)
       const activePath = computed(() => {
-        const { meta } = route
+        const { meta, path } = route
+        let id = selectMenu(path, menu.value)
+        formTree(menu.value, id)
         if (meta.activeMenu) {
           return meta.activeMenu
         }
         return route.path
       })
-      function selectMenu(e: string, menu: menuData[], father?: menuData) {
+      function selectMenu(e: string, menu: menuData[]) {
+        let id: number | string = ''
         for (const value of menu) {
           if (value.sub) {
-            selectMenu(e, value.sub, value)
-          }
-          if (value.index === e) {
-            let payload = []
-            if (father) {
-              payload.push({ index: father.index, title: father.title })
+            selectMenu(e, value.sub)
+          } else {
+            debugger
+            if (value.index === e) {
+              id = value.pid
+              break
             }
-            payload.push(value)
-            store.commit('app/increment', payload)
-            break
           }
         }
+        console.log(id)
+
+        return id
+      }
+      // 反递归查找
+      function formTree(list: menuData[], id: string | number) {
+        list.forEach((item) => {
+          if (item.sub && item.sub.length) {
+            if (item.sub.some((row) => row.id === id)) {
+              treeId.value.push(item) // 接收符合的数据id
+              formTree(list, item.pid) // 从头递归
+            } else {
+              // 继续递归
+              formTree(item.sub, id)
+            }
+          } else {
+            return
+          }
+        })
       }
       return {
         menu,
+        treeId,
         selectMenu,
         isCollapse,
         activePath
@@ -156,7 +166,12 @@
     .menu-title {
       display: inline-block;
       padding-left: 18px;
-      //padding-left: 29px !important;
+    }
+    .menu-item-sub {
+      padding-left: 69px !important;
+    }
+    ::v-deep .el-icon-arrow-down {
+      color: #ffffff !important;
     }
   }
 </style>
