@@ -14,13 +14,13 @@
       :default-active="activePath"
     >
       <template v-for="(item, index) in menu" :key="index">
-        <el-submenu v-if="item.sub" :index="item.title">
+        <el-submenu v-if="item.sub.length" :index="item.title">
           <template #title>
             <i :class="item.icon"></i>
             <span class="menu-title">{{ item.title }}</span>
           </template>
           <template v-for="(item, index) in item.sub" :key="index">
-            <el-submenu v-if="item.sub" :index="item.title">
+            <el-submenu v-if="item.sub.length" :index="item.title">
               <template #title>
                 <i :class="item.icon"></i>
                 <span class="menu-title">{{ item.title }}</span>
@@ -30,12 +30,12 @@
                 :key="item.index"
                 :index="item.index"
                 class="menu-item-sub"
-                >{{ item.title }}</el-menu-item
-              >
+                >{{ item.title }}
+              </el-menu-item>
             </el-submenu>
-            <el-menu-item :index="item.index" v-else class="menu-item">{{
-              item.title
-            }}</el-menu-item>
+            <el-menu-item :index="item.index" v-else class="menu-item"
+              >{{ item.title }}
+            </el-menu-item>
           </template>
         </el-submenu>
         <el-menu-item v-else :index="item.index">
@@ -58,60 +58,44 @@
   import { computed, defineComponent, ref, reactive } from 'vue'
   import { useRoute } from 'vue-router'
   import { useStore } from 'vuex'
+
   export default defineComponent({
+    name: 'appSideBar',
     components: {},
     setup() {
       const store = useStore()
       const route = useRoute()
       let isCollapse = ref(false)
-      let treeId = ref<any>([])
       let menu = computed(() => store.state.app.menu)
+      let dfsBreadData = computed(() => dfsMenu(menu.value)) //扁平化后的菜单，用于面包屑
       const activePath = computed(() => {
         const { meta, path } = route
-        let id = selectMenu(path, menu.value)
-        formTree(menu.value, id)
+        console.log('path', path)
+        dfsBreadData.value[path] && store.commit('app/coverBread', dfsBreadData.value[path])
         if (meta.activeMenu) {
           return meta.activeMenu
         }
-        return route.path
+        return path
       })
-      function selectMenu(e: string, menu: menuData[]) {
-        let id: number | string = ''
-        for (const value of menu) {
-          if (value.sub) {
-            selectMenu(e, value.sub)
+      function dfsMenu(menu: menuData[]): any {
+        let result: any = {}
+        // 深度优先遍历
+        menu.forEach((item: menuData) => dfs(item, []))
+        return result
+        function dfs(menu: menuData, path: string[]) {
+          if (!menu.sub.length) {
+            // 用路径做key，方便查找 path是title组成的数组.
+            result[menu.index] = [...path, menu.title]
           } else {
-            debugger
-            if (value.index === e) {
-              id = value.pid
-              break
-            }
+            path.push(menu.title)
+            menu.sub.forEach((menu: menuData) => dfs(menu, path))
+            path.pop()
           }
         }
-        console.log(id)
-
-        return id
-      }
-      // 反递归查找
-      function formTree(list: menuData[], id: string | number) {
-        list.forEach((item) => {
-          if (item.sub && item.sub.length) {
-            if (item.sub.some((row) => row.id === id)) {
-              treeId.value.push(item) // 接收符合的数据id
-              formTree(list, item.pid) // 从头递归
-            } else {
-              // 继续递归
-              formTree(item.sub, id)
-            }
-          } else {
-            return
-          }
-        })
       }
       return {
         menu,
-        treeId,
-        selectMenu,
+        dfsBreadData,
         isCollapse,
         activePath
       }
@@ -126,29 +110,35 @@
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #303133;
+
     .logo {
       height: 100px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+
       img {
         width: auto;
         width: 50px;
         height: 50px;
       }
     }
+
     .collapse-logo img {
       transform: scale(0.7);
       transition: all 0.5s;
     }
+
     .el-menu {
       border-right: 0;
     }
+
     .el-menu-vertical:not(.el-menu--collapse) {
       width: 250px;
       height: calc(100% - 100px);
     }
+
     .check-menu-icon {
       cursor: pointer;
       position: absolute;
@@ -157,19 +147,24 @@
       font-size: 26px;
       color: #ada5a5;
     }
+
     .iconfont {
       font-size: 16px;
     }
+
     .menu-item {
       padding-left: 59px !important;
     }
+
     .menu-title {
       display: inline-block;
       padding-left: 18px;
     }
+
     .menu-item-sub {
       padding-left: 69px !important;
     }
+
     ::v-deep .el-icon-arrow-down {
       color: #ffffff !important;
     }

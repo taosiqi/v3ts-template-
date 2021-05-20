@@ -1,9 +1,7 @@
 <template>
   <div class="navbar">
     <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb" trigger="click">
-      <el-breadcrumb-item :to="{ path: item.index }" v-for="item in bread" :key="item.title">{{
-        item.title
-      }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in bread" :key="item">{{ item }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-dropdown class="dropdown" @command="handleCommand">
       <span class="el-dropdown-link">
@@ -30,6 +28,7 @@
   import { computed, reactive, toRefs } from 'vue'
   import { useStore } from 'vuex'
   export default {
+    name: 'appNavigationBar',
     setup() {
       const store = useStore()
       const bread = computed(() => store.state.app.bread)

@@ -38,9 +38,6 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'leven1/leven3',
             name: 'Leven3',
-            meta: {
-              activeMenu: '/template/leven1'
-            },
             component: () =>
               import(/* webpackChunkName: "dashboard" */ '@/views/template/leven3.vue')
           }

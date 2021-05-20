@@ -1,29 +1,17 @@
 interface state {
-  bread: bread[]
+  bread: string[]
   menu: menuData[]
 }
-interface bread {
-  index: string
-  title: string
-}
 const state: state = {
-  bread: [
-    {
-      index: '/dashboard',
-      title: '首页'
-    },
-    {
-      index: '/dashboard',
-      title: '仪表盘'
-    }
-  ],
+  bread: [],
   menu: [
     {
       id: 1,
       pid: 0,
       icon: 'iconfont icon-yibiao',
       index: '/dashboard',
-      title: '仪表盘'
+      title: '仪表盘',
+      sub: []
     },
     {
       id: 2,
@@ -36,7 +24,8 @@ const state: state = {
           id: 3,
           pid: 2,
           index: '/template/leven1',
-          title: 'leven1'
+          title: 'leven1',
+          sub: []
         },
         {
           id: 4,
@@ -48,7 +37,8 @@ const state: state = {
               id: 5,
               pid: 4,
               index: '/template/leven1/leven3',
-              title: 'leven3'
+              title: 'leven3',
+              sub: []
             }
           ]
         }
@@ -59,11 +49,7 @@ const state: state = {
 const getters = {}
 const actions = {}
 const mutations = {
-  checkBread(state: state, payload: bread[]) {
-    state.bread = [state.bread[0], ...payload]
-    console.log(state.bread)
-  },
-  coverBread(state: state, payload: bread[]) {
+  coverBread(state: state, payload: string[]) {
     state.bread = payload
   }
 }

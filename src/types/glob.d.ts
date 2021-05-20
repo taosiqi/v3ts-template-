@@ -10,16 +10,15 @@ declare interface ProjectState {
   domain: string
   userServer: string
 }
+
 declare interface menuData {
-  id:number | string
-  pid:number | string
+  id:number
+  pid:number
   icon?: string
   index: string | ''
   title:string
-  sub?:menuData[]
+  sub:menuData[]
 }
 
-declare interface breadData {
-  index: string
-  title:string
-}
+
+
