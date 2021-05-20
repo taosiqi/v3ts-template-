@@ -79,17 +79,16 @@
       })
       function dfsMenu(menu: menuData[]): any {
         let result: any = {}
-        // 深度优先遍历
         menu.forEach((item: menuData) => dfs(item, []))
         return result
+        // 深度优先遍历
         function dfs(menu: menuData, path: string[]) {
           if (!menu.sub.length) {
             // 用路径做key，方便查找 path是title组成的数组.
             result[menu.index] = [...path, menu.title]
           } else {
-            path.push(menu.title)
-            menu.sub.forEach((menu: menuData) => dfs(menu, path))
-            path.pop()
+            path.push(menu.title) //把当前title push进数组
+            menu.sub.forEach((menu: menuData) => dfs(menu, path)) //递归
           }
         }
       }
