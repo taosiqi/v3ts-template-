@@ -65,20 +65,24 @@
     setup() {
       const store = useStore()
       const route = useRoute()
+      //展开菜单
       let isCollapse = ref(false)
+      //菜单配置
       let menu = computed(() => store.state.app.menu)
-      let dfsBreadData = computed(() => dfsMenu(menu.value)) //扁平化后的菜单，用于面包屑
+      //扁平化后的菜单，用于面包屑
+      let dfsBread = computed(() => dfsMenu(menu.value))
+      // 当前激活的菜单
       const activePath = computed(() => {
         const { meta, path } = route
-        console.log('path', path)
-        dfsBreadData.value[path] && store.commit('app/coverBread', dfsBreadData.value[path])
+        dfsBread.value[path] && store.commit('app/coverBread', dfsBread.value[path])
         if (meta.activeMenu) {
           return meta.activeMenu
         }
         return path
       })
+      // 扁平化菜单
       function dfsMenu(menu: menuData[]): any {
-        let result: any = {}
+        let result: dfsBreadData = {}
         menu.forEach((item: menuData) => dfs(item, []))
         return result
         // 深度优先遍历
@@ -92,9 +96,10 @@
           }
         }
       }
+
       return {
         menu,
-        dfsBreadData,
+        dfsBreadData: dfsBread,
         isCollapse,
         activePath
       }

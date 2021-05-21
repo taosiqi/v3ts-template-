@@ -20,5 +20,9 @@ declare interface menuData {
   sub:menuData[]
 }
 
+declare interface dfsBreadData{
+  [key: string]:string[]
+}
+
 
 
